@@ -14,6 +14,9 @@
 
 canvas {
   margin: 40px;
+  position: absolute;
+  top: 400px;
+  left: 8px;
 }
 
 /*# sourceMappingURL=/app.c328ef1a.css.map */

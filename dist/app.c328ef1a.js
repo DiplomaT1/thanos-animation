@@ -1389,18 +1389,32 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
   for (var i = 0; i < 36; i++) {
     newData.push(ctx.createImageData(width, height));
-  } // for(let f = 0; f < width; f++) {
-  //   for(let k = 0; k < width; k++) {
-  //     // console.log('test');
-  //   }
-  // }
+  }
 
+  for (var f = 0; f < width; f++) {
+    for (var k = 0; k < height; k++) {
+      for (var l = 0; l < 2; l++) {
+        var n = 4 * (k * width + f);
+        var m = Math.floor(36 * Math.random());
 
-  newData.forEach(function (imagedata) {
+        for (var p = 0; p < 4; p++) {
+          newData[m].data[n + p] = imgData.data[n + p];
+        }
+      }
+    }
+  }
+
+  newData.forEach(function (imagedata, i) {
     var clonedCanvas = canvas.cloneNode();
+    clonedCanvas.style.transition = 'all 1.5s ease-in-out';
+    setTimeout(function () {
+      var angle = (Math.random() - 0.5) * 2 * Math.PI;
+      clonedCanvas.style.transform = 'translate(' + 60 * Math.cos(angle) + 'px, ' + 60 * Math.sin(angle) + 'px)';
+      clonedCanvas.style.opacity = '0';
+    });
     document.body.appendChild(clonedCanvas);
-    clonedCanvas.getContext('2d').putImageData(imagedata, 0, 0); // console.log(imagedata);
-  }); // console.log(newData);
+    clonedCanvas.getContext('2d').putImageData(imagedata, 0, 0);
+  });
 });
 },{"html2canvas":"node_modules/html2canvas/dist/html2canvas.js","./styles.sass":"styles.sass"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -1430,7 +1444,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "21853" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "27965" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
