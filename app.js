@@ -4,6 +4,8 @@ import './styles.sass';
 
 html2canvas(document.querySelector("#capture")).then(canvas => {
   
+  const preloader = document.querySelector('.preloader');
+
   const width = canvas.width;
   const height = canvas.height;
   const ctx = canvas.getContext('2d');
@@ -29,6 +31,20 @@ html2canvas(document.querySelector("#capture")).then(canvas => {
 
   const imgGauntlet = document.querySelector('img');
 
+  
+  
+  newData.forEach( (imagedata, i) => {
+    let clonedCanvas = canvas.cloneNode();
+    clonedCanvas.style.transition = 'all 1.5s ease-in-out';
+    document.body.appendChild(clonedCanvas);
+    clonedCanvas.getContext('2d').putImageData(imagedata, 0, 0);
+  });
+
+  setTimeout(() => {
+    preloader.classList.add('has-been-loaded');
+  }, 1500);
+
+  
   imgGauntlet.addEventListener('click', function() {
     const canvases = document.querySelectorAll('canvas');
 
@@ -42,14 +58,6 @@ html2canvas(document.querySelector("#capture")).then(canvas => {
         el.style.opacity = '0'; 
       });
     });
-  });
-
-
-  newData.forEach( (imagedata, i) => {
-    let clonedCanvas = canvas.cloneNode();
-    clonedCanvas.style.transition = 'all 1.5s ease-in-out';
-    document.body.appendChild(clonedCanvas);
-    clonedCanvas.getContext('2d').putImageData(imagedata, 0, 0);
   });
 
 });

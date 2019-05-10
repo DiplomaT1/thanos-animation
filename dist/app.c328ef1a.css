@@ -2,6 +2,25 @@ body {
   overflow: hidden;
 }
 
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: #080808;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 2.2s ease;
+}
+.preloader.has-been-loaded {
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .container {
   max-width: 600px;
   border: 1px solid grey;
@@ -30,10 +49,10 @@ img {
   max-height: 80vh;
   cursor: pointer;
   transform: scale(1) translateY(-50%);
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
 }
 img:hover {
-  transform: scale(1.05) translateY(-50%);
+  transform: scale(1.02) translateY(-50%);
 }
 
 /*# sourceMappingURL=/app.c328ef1a.css.map */
