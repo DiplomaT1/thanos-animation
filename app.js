@@ -3,7 +3,6 @@ import './styles.sass';
 
 
 html2canvas(document.querySelector("#capture")).then(canvas => {
-  // document.body.appendChild(canvas);
   
   const width = canvas.width;
   const height = canvas.height;
@@ -28,20 +27,29 @@ html2canvas(document.querySelector("#capture")).then(canvas => {
     }
   }
 
+  const imgGauntlet = document.querySelector('img');
+
+  imgGauntlet.addEventListener('click', function() {
+    const canvases = document.querySelectorAll('canvas');
+
+    const audio = document.querySelector('audio');
+    audio.play();
+
+    canvases.forEach((el) => {
+      setTimeout(() => {
+        let angle = (Math.random() - 0.5) * 2 * Math.PI;
+        el.style.transform = 'translate('+ 60 * Math.cos(angle) +'px, '+ 60 * Math.sin(angle) +'px)'; 
+        el.style.opacity = '0'; 
+      });
+    });
+  });
+
+
   newData.forEach( (imagedata, i) => {
     let clonedCanvas = canvas.cloneNode();
-
     clonedCanvas.style.transition = 'all 1.5s ease-in-out';
-
-    setTimeout(() => {
-      let angle = (Math.random() - 0.5) * 2 * Math.PI;
-      clonedCanvas.style.transform = 'translate('+ 60 * Math.cos(angle) +'px, '+ 60 * Math.sin(angle) +'px)'; 
-      clonedCanvas.style.opacity = '0'; 
-    });
-
-
-
     document.body.appendChild(clonedCanvas);
     clonedCanvas.getContext('2d').putImageData(imagedata, 0, 0);
   });
+
 });

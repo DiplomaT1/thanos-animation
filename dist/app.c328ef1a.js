@@ -1298,7 +1298,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     })["default"]
   );
 });
-},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{}],"../../AppData/Roaming/nvm/v8.6.0/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -1330,7 +1330,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../../AppData/Roaming/nvm/v8.6.0/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -1365,12 +1365,12 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles.sass":[function(require,module,exports) {
+},{"./bundle-url":"../../AppData/Roaming/nvm/v8.6.0/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles.sass":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"app.js":[function(require,module,exports) {
+},{"_css_loader":"../../AppData/Roaming/nvm/v8.6.0/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
 var _html2canvas = _interopRequireDefault(require("html2canvas"));
@@ -1380,7 +1380,6 @@ require("./styles.sass");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _html2canvas.default)(document.querySelector("#capture")).then(function (canvas) {
-  // document.body.appendChild(canvas);
   var width = canvas.width;
   var height = canvas.height;
   var ctx = canvas.getContext('2d');
@@ -1404,19 +1403,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     }
   }
 
+  var imgGauntlet = document.querySelector('img');
+  imgGauntlet.addEventListener('click', function () {
+    var canvases = document.querySelectorAll('canvas');
+    var audio = document.querySelector('audio');
+    audio.play();
+    canvases.forEach(function (el) {
+      setTimeout(function () {
+        var angle = (Math.random() - 0.5) * 2 * Math.PI;
+        el.style.transform = 'translate(' + 60 * Math.cos(angle) + 'px, ' + 60 * Math.sin(angle) + 'px)';
+        el.style.opacity = '0';
+      });
+    });
+  });
   newData.forEach(function (imagedata, i) {
     var clonedCanvas = canvas.cloneNode();
     clonedCanvas.style.transition = 'all 1.5s ease-in-out';
-    setTimeout(function () {
-      var angle = (Math.random() - 0.5) * 2 * Math.PI;
-      clonedCanvas.style.transform = 'translate(' + 60 * Math.cos(angle) + 'px, ' + 60 * Math.sin(angle) + 'px)';
-      clonedCanvas.style.opacity = '0';
-    });
     document.body.appendChild(clonedCanvas);
     clonedCanvas.getContext('2d').putImageData(imagedata, 0, 0);
   });
 });
-},{"html2canvas":"node_modules/html2canvas/dist/html2canvas.js","./styles.sass":"styles.sass"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"html2canvas":"node_modules/html2canvas/dist/html2canvas.js","./styles.sass":"styles.sass"}],"../../AppData/Roaming/nvm/v8.6.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1444,7 +1451,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "27965" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "2090" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1619,5 +1626,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
+},{}]},{},["../../AppData/Roaming/nvm/v8.6.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
 //# sourceMappingURL=/app.c328ef1a.js.map

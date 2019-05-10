@@ -1,3 +1,6 @@
+body
+  overflow: hidden
+  
 .container
   max-width: 600px
   border: 1px solid grey
@@ -16,3 +19,14 @@ canvas
   position: absolute
   top: 400px
   left: 8px
+
+img
+  position: absolute
+  right: 0
+  top: 50%
+  max-height: 80vh
+  cursor: pointer
+  transform: scale(1) translateY(-50%)
+  transition: all .2s ease
+  &:hover
+    transform: scale(1.05) translateY(-50%)
